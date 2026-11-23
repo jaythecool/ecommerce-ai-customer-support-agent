@@ -8,6 +8,28 @@ Traditional customer support systems rely heavily on manual queries and predefin
 
 Users can interact with the agent conversationally to check order information or request cancellations. Based on the user's intent, the AI selects an appropriate tool, executes it, retrieves database results, and generates a natural-language response.
 
+## 📸 Screenshots
+
+### Main Application
+<p align="center">
+  <img src="screenshots/ui.png" width="900" alt="E-commerce AI Customer Support Agent interface">
+</p>
+
+### Order Status Lookup
+<p align="center">
+  <img src="screenshots/order_status.png" width="900" alt="AI agent retrieving order details">
+</p>
+
+### Order Cancellation
+<p align="center">
+  <img src="screenshots/cancel_order.png" width="900" alt="AI agent processing an order cancellation request">
+</p>
+
+### manual check
+<p align="center">
+  <img src="screenshots/manual_check.png" width="900" alt="AI agent cancelled the order">
+</p>
+
 ## ✨ Features
 
 - 💬 Natural-language customer interaction
