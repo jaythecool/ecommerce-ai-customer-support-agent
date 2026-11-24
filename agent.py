@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 from langchain_core.tools import tool
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 import db_service
+import os
+import streamlit as st
 
 load_dotenv()
 
@@ -34,9 +36,23 @@ tools = {
     cancel_order.name: cancel_order,
 }
 
+groq_api_key = os.getenv("GROQ_API_KEY")
 
+if not groq_api_key:
+    try:
+        groq_api_key = st.secrets["GROQ_API_KEY"]
+    except Exception:
+        groq_api_key = None
 
-model = ChatGroq(model="openai/gpt-oss-20b")
+if not groq_api_key:
+    raise ValueError("GROQ_API_KEY is missing!")
+
+model = ChatGroq(
+    model="openai/gpt-oss-20b",
+    api_key=groq_api_key
+)
+
+#model = ChatGroq(model="openai/gpt-oss-20b")
 model_tools_binding = model.bind_tools(list(tools.values()))
 
 
@@ -92,7 +108,7 @@ def agent(query, chat_history=None):
     final_messages = [SystemMessage(content=SYSTEM_PROMPT)]
     final_messages.extend(_convert_history(chat_history))
     final_messages.append(HumanMessage(content=query))
-    final_messages.append(HumanMessage(content="Tool results:\n" + "\n\n".join(tools_result)))
+    final_messages.append(SystemMessage(content="Tool results:\n" + "\n\n".join(tools_result)))
 
     final_result = model.invoke(final_messages)
     print("\n--- FINAL AI RESPONSE ---")
