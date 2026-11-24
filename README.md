@@ -2,6 +2,12 @@
 
 An AI-powered customer support agent that handles order-related queries through natural language. Built using **LangChain, Groq, Python, MySQL, and Streamlit**, the agent can intelligently select and execute tools to retrieve order information and process cancellation requests.
 
+## 🔄 Project Update
+
+This project was initially developed and tested using **MySQL** as its backend database. To make the deployed application accessible to everyone without requiring a separately hosted database, I migrated it to **SQLite** for the live demo.
+
+The migration preserves the core functionality of the AI agent, including order status lookup, order cancellation, and conversational follow-ups. Anyone can now interact with and test the application directly through the live demo.
+
 ## 🚀 Overview
 
 Traditional customer support systems rely heavily on manual queries and predefined workflows. This project explores how AI agents can automate common e-commerce support tasks by combining LLM reasoning with real database operations.
