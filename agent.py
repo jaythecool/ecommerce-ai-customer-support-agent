@@ -110,7 +110,14 @@ def agent(query, chat_history=None):
     final_messages.append(HumanMessage(content=query))
     final_messages.append(SystemMessage(content="Tool results:\n" + "\n\n".join(tools_result)))
 
-    final_result = model.invoke(final_messages)
+    final_model = model.bind_tools(
+        list(tools.values()),
+        tool_choice="none"
+    )
+
+    final_result = final_model.invoke(final_messages)
+
+    
     print("\n--- FINAL AI RESPONSE ---")
     print(final_result.content)
     return final_result.content
