@@ -1,4 +1,3 @@
-
 import streamlit as st
 from agent import agent
 
@@ -96,7 +95,7 @@ if query:
         with st.spinner("Thinking..."):
 
             try:
-                response = agent(query)
+                response = agent(query, chat_history=st.session_state.messages[:-1])
 
                 # Handle AIMessage or plain string responses
                 if hasattr(response, "content"):
